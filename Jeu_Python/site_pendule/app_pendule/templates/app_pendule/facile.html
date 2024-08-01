@@ -1,0 +1,76 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Mon Application Django</title>
+  <link href="/static/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+ <div class="container mt-5">
+    <h3 class="text-center">Facile</h3>
+     <p  class="text-danger"> Tu as : {{essai}} essais </p>
+    <p class="bg bg-danger text-white text-center" style="width:20px; height:20px;">{{ count }}</p>
+       {% if message_counter %}
+            <p>{{ message_counter }}</p>
+        {% endif %}
+    <div class="row">
+            <table class="  table col-lg-12">
+            <thead>
+                <tr>
+                    <th scope="col">Mots</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for facile in mot %}
+                <tr>
+                    <td>{{ facile }}</td>
+                {% endfor %}
+                </tr>
+            </tbody>
+        </table>
+    </div>
+      <div class="row">
+
+             {% if  nice %}
+           <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                    <img src="/static/nice.jpg" alt="Not found">
+                </div>
+                <div class="col-lg-4"></div>
+                {% else %}
+              <div class="col-lg-4"></div>
+                <div class="col-lg-4">
+                    <img src="/static/{{count}}.png" alt="Not found">
+                </div>
+                <div class="col-lg-4"></div>
+             {% endif %}
+
+      </div>
+    <div class=" row text-center mt-3">
+        <p>Devinez le mot :</p>
+        <p>
+            {% for letter in mot_a_deviner %}
+                {% if letter == '_' %}
+                    _&nbsp;
+                {% else %}
+                    {{ letter }}&nbsp;
+                {% endif %}
+            {% endfor %}
+        </p>
+    </div>
+    <form method="POST" action="{% url 'guess_letter' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="letterInput">Entrez une lettre :</label>
+            <input type="text" class="form-control" id="letterInput" name="letter" maxlength="1" required>
+        </div>
+        <input type="text" name="deviner" value="{{ deviner }}">
+        <input type="hidden" name="lettres_a_deviner" value="{{ mot_a_deviner }}">
+        <button type="submit" class="btn btn-primary">Devinez</button>
+    </form>
+</div>
+    <script src="/static/bootstrap.min.js"></script>
+    <script src="/static/bootstrap.min.js"></script>
+</body>
+</html>

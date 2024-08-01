@@ -1,0 +1,56 @@
+django-admin startproject monsite
+python manage.py runserver
+//
+Étape 4: Créer une nouvelle application dans le projet
+Créez une nouvelle application :
+Une application est une partie du projet. Pour créer une application nommée monapp, exécutez 
+python manage.py startapp monapp
+Ajouter l'application au projet :
+Ajoutez l'application à votre projet en modifiant le fichier settings.py du projet (monsite/monsite/settings.py) pour inclure monapp dans la liste INSTALLED_APPS :
+
+python
+Copier le code
+INSTALLED_APPS = [
+    ...
+    'monapp',
+]
+Créer une vue de base :
+
+Dans monapp/views.py, ajoutez une vue de base :
+
+python
+Copier le code
+from django.http import HttpResponse
+
+def home(request):
+    return HttpResponse("Bonjour, le monde!")
+Ajouter une URL pour la vue :
+
+Créez un fichier urls.py dans le répertoire monapp et ajoutez les URL pour la vue :
+
+python
+Copier le code
+from django.urls import path
+from .views import home
+
+urlpatterns = [
+    path('', home, name='home'),
+]
+Inclure les URL de l'application dans les URL du projet :
+
+Modifiez monsite/urls.py pour inclure les URL de monapp :
+
+python
+Copier le code
+from django.contrib import admin
+from django.urls import path, include
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('monapp.urls')),
+]
+Redémarrez le serveur de développement :
+python manage.py runserver
+
+//
+python manage.py collectstatic (resaka bootstrap)

@@ -1,0 +1,21 @@
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Mon Application Django</title>
+  <link href="/static/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <div class="container mt-5">
+        <h3 class="text-center ">Difficile</h3>
+          <ul>
+                {% for diff in mots %}
+                    <li>{{ diff }}</li>
+                {% endfor %}
+        </ul>
+    </div>
+    <script src="/static/bootstrap.min.js"></script>
+</body>
+</html>

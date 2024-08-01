@@ -1,0 +1,10 @@
+chat
+chien
+maison
+arbre
+livre
+ecole
+gateau
+fleur
+avion
+velo
